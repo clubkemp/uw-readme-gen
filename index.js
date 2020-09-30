@@ -12,7 +12,7 @@ const questions = [
     },
     {
         type:"input",
-        name:"desc",
+        name:"description",
         message:"What is the project description?"
 
     },
@@ -53,22 +53,25 @@ const questions = [
         message:"Relevant test?"
 
     },
-    {
-        type:"confirm",
-        name:"toc",
-        message:"Would you like a table of contents?"
+    // {
+    //     type:"confirm",
+    //     name:"toc",
+    //     message:"Would you like a table of contents?"
 
-    },
+    // },
 ];
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function (err) {
-        if (err){
-            return console.log(err);
-        } 
-        console.log(`Hello World > ${fileName}`);
-      })
+    data.forEach(e => {
+        fs.appendFile(fileName, e, function (err) {
+            if (err){
+                return console.log(err);
+            } 
+            console.log(`Adding ${e}`);
+          })
+    });
+    
 }
 
 // function to initialize program
@@ -76,10 +79,10 @@ function init() {
     inquirer
     .prompt(questions)
     .then(answers => {
-        var cleanedData = utils.dataPrep(answers)
-        var markdown = utils.generateMarkdown(cleanedData);
+        // var cleanedData = utils.dataPrep(answers)
+        var markdown = utils.generateMarkdown(answers);
         console.log(markdown)
-        writeToFile("README.md", markdown)
+        writeToFile("README", markdown)
     })
     .catch(error => {
         if(error.isTtyError) {
