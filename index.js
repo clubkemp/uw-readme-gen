@@ -1,6 +1,6 @@
 var inquirer = require('inquirer')
 var fs = require("fs");
-var mdGen = require("./utils/generateMarkdown.js")
+var utils = require("./utils/generateMarkdown.js")
 
 // array of questions for user
 const questions = [
@@ -25,12 +25,12 @@ const questions = [
     {
         type:"input",
         name:"usage",
-        message:"What is the project usage?"
+        message:"How do you use the software?"
 
     },
     {
         type:"input",
-        name:"Credits",
+        name:"credits",
         message:"Give credit where credits due?"
 
     },
@@ -38,7 +38,7 @@ const questions = [
         type:"list",
         name:"license",
         message:"What license?",
-        choices:["GPL", "Apache", "MS-PL", "BSD", "CDDL", "EPL", "MIT"]
+        choices:["MIT", "GPL", "Apache", "MS-PL", "BSD", "CDDL", "EPL"]
 
     },
     {
@@ -63,6 +63,12 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function (err) {
+        if (err){
+            return console.log(err);
+        } 
+        console.log(`Hello World > ${fileName}`);
+      })
 }
 
 // function to initialize program
@@ -70,7 +76,10 @@ function init() {
     inquirer
     .prompt(questions)
     .then(answers => {
-        console.log(answers)
+        var cleanedData = utils.dataPrep(answers)
+        var markdown = utils.generateMarkdown(cleanedData);
+        console.log(markdown)
+        writeToFile("README.md", markdown)
     })
     .catch(error => {
         if(error.isTtyError) {
