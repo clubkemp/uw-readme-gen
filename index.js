@@ -1,6 +1,7 @@
-var inquirer = require('inquirer')
-var fs = require("fs");
-var utils = require("./utils/generateMarkdown.js")
+const inquirer = require('inquirer')
+const fs = require("fs");
+const path = require('path');
+const utils = require("./utils/generateMarkdown.js")
 
 // array of questions for user
 const questions = [
@@ -53,35 +54,51 @@ const questions = [
         message:"Relevant test?"
 
     },
-    // {
-    //     type:"confirm",
-    //     name:"toc",
-    //     message:"Would you like a table of contents?"
+    {
+        type:"input",
+        name:"username",
+        message:"What's your gihub handle?"
 
-    // },
+    },
+    {
+        type:"input",
+        name: "email",
+        message: "What's your contact email?",
+        validate: function (email) {
+  
+            valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+            if (valid) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
 ];
 
 // function to write README file
-function writeToFile(fileName, data) {
-    data.forEach(e => {
-        fs.appendFile(fileName, e, function (err) {
-            if (err){
-                return console.log(err);
-            } 
-            console.log(`Adding ${e}`);
-          })
-    });
+const writeToFile = (fileName, data) => {
+    fs.writeFile(fileName, data, function (err) {
+        if (err){
+            return console.log(err);
+        } 
+        console.log(`Adding ${data}`);
+        })
     
 }
 
 // function to initialize program
-function init() {
+const init = () => {
     inquirer
     .prompt(questions)
     .then(answers => {
-        // var cleanedData = utils.dataPrep(answers)
-        var markdown = utils.generateMarkdown(answers);
+        const repoName = path.basename(process.cwd());
+        //var cleanedData = utils.dataPrep(answers)
+        console.log("Just before markdown", answers, repoName)
+        const markdown = utils.generateMarkdown(answers, repoName);
         console.log(markdown)
+        console.log("I'm bored, moving on")
         writeToFile("README", markdown)
     })
     .catch(error => {

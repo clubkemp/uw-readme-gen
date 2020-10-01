@@ -1,7 +1,7 @@
 //function to prep the data for README
 function dataPrep (data){
   if (data.toc){
-  data.toc =`* [Installation](#installation)\r\n
+  data.toc =`*[Installation](#installation)\r\n
     * [Usage](#usage)\r\n
     * [Credits](#credits)\r\n
     * [License](#license)\r\n
@@ -13,35 +13,49 @@ return data
 }
 
 // function to generate markdown for README
-function generateMarkdown(data) {
-  console.log("creating markdown on",data)
-  // function tocCheck(){
-  //   if(data.toc){
-  //     return `##Table of Contents\r\n
-  //     ${data.toc}
-  //     `
-  //   }else{
-  //     return ``
-  //   }
-  // }
-  var mdArray = []
-  for(const item in data){
-    console.log(item, data[item])
-    if(item ==="title"){
-    console.log("pushing title")
-    mdArray.push(`# ${data[item]}\r\n`)
-    console.log(mdArray)
-    }else{
-    console.log("pushing content");
-    mdArray.push(`## ${item}\r\n`);
-    mdArray.push(`${data[item]}\r\n`);
-    }
-  }
-  console.log(mdArray)
-  return mdArray
+const generateMarkdown = (data, repoName) => {
   
+  console.log("creating markdown on", data, repoName)
+  const {title, description, install, usage, credits, license, contributing, tests, username, email } = data
+  
+  const markdown = `# ${title}
+  ![GitHub](https://img.shields.io/github/license/${username}/${repoName})
+  ## Description 
+  ${description}
+  
+  ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Credits](#credits)
+  * [License](#license)
+  * [Contributions](#contributing)
+  * [Tests](#tests)
+  
+  ## Installation 
+  ${install}
+  
+  ## Usage
+  ${usage}
+  
+  ## Credits
+  ${credits}
+  
+  ## License
+  ${license}
+  
+  ## Contributing
+  ${contributing}
+  
+  ## Tests
+  ${tests}
+  
+  ## Questions
+  Have quesitons about this repo? Please reach out on github or via email
+    * [${username}](https://github.com/${username})
+    * ${email}`
 
-  
+  console.log("Trying to return", markdown)
+  return markdown
 }
 
 module.exports = {generateMarkdown, dataPrep}
