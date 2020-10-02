@@ -1,6 +1,9 @@
+//do work to change use input to licenes
 const makeShield = license => {
     console.log(license)
+    //setup empty variable
     let shield
+    //case switch to match the user input to the hard urls for the bades from shield.io
     switch(license){
         case 'MIT':
             shield = `[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)`;
@@ -17,9 +20,11 @@ const makeShield = license => {
         `;
         break;
     }
+    //return the given shield
     return shield
 }
 
+//export the function
 module.exports = {
     makeShield,
 }

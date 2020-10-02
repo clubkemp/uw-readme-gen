@@ -1,4 +1,4 @@
-
+//array of questions for inquirer prompt
 const questions = [
     {
         type:"input",
@@ -72,6 +72,7 @@ const questions = [
     }
 ];
 
+//export prompts
 module.exports = {
     questions:questions
 }
