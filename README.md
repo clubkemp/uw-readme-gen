@@ -1,7 +1,8 @@
-# alksjdflkjasdf
-  [![GitHub license](https://img.shields.io/github/license/clubkemp/uw-readme-gen)](https://github.com/clubkemp/uw-readme-gen/blob/master/LICENSE)
+# Title
+  [![CC-0 license](https://img.shields.io/badge/License-CC--0-blue.svg)](https://creativecommons.org/licenses/by-nd/4.0)
+        
   ## Description 
-  alskdjfkl
+  lakjsdf
   
   ## Table of Contents
   * [Installation](#installation)
@@ -12,24 +13,24 @@
   * [Tests](#tests)
   
   ## Installation 
-  asldkfj
+  alksdjf
   
   ## Usage
-  asldkjf
+  alskdjf
   
   ## Credits
-  lkdsjfkl
+  alskdjf
   
   ## License
-  MIT
+  CC-0
   
   ## Contributing
-  laskdjfkl
+  alksjdf
   
   ## Tests
   laksjdf
   
   ## Questions
   Have quesitons about this repo? Please reach out on github or via email
-  * [clubkemp](https://github.com/clubkemp)
-  * kempj2.jk@gmail.com
+    * [clubkemp](https://github.com/clubkemp)
+    * kempj2.jk@gmail.com

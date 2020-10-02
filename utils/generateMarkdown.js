@@ -1,25 +1,11 @@
-//function to prep the data for README
-function dataPrep (data){
-  if (data.toc){
-  data.toc =`*[Installation](#installation)\r\n
-    * [Usage](#usage)\r\n
-    * [Credits](#credits)\r\n
-    * [License](#license)\r\n
-    * [Contributions](#contributing)\r\n
-    * [Tests](#tests)`
-   
-}
-return data
-}
-
 // function to generate markdown for README
-const generateMarkdown = (data, repoName) => {
+const generateMarkdown = (data, repoName, shield) => {
   
   console.log("creating markdown on", data, repoName)
   const {title, description, install, usage, credits, license, contributing, tests, username, email } = data
   
   const markdown = `# ${title}
-  ![GitHub](https://img.shields.io/github/license/${username}/${repoName})
+  ${shield}
   ## Description 
   ${description}
   
@@ -58,4 +44,4 @@ const generateMarkdown = (data, repoName) => {
   return markdown
 }
 
-module.exports = {generateMarkdown, dataPrep}
+module.exports = {generateMarkdown}
